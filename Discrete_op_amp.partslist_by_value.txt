@@ -1,0 +1,49 @@
+.START
+..device	value	tolerance	comment	footprint	quantity	refdes
+2SA2124	unknown	/	unknown	SOT89-3	1	Q8
+2SC6096	unknown	/	unknown	SOT89-3	1	Q7
+7812	unknown	unknown	Positive voltage regulator if needed	unknown	1	U1
+7912	unknown	unknown	Negative voltage regulator if needed	TO220	1	U2
+BC846	unknown	/	Input stage offset comp circuit	SOT23	1	Q10
+CAPACITOR	unknown	unknown	unknown	0805	16	C1 C11 C12 C13 C14 C15 C16 C17 C18 C19 C2 C3 C4 C5 C7 C9
+CONNECTOR_3	unknown	/	unknown	SIP3N	1	CONN5
+CONNECTOR_4	unknown	/	unknown	SIP4N	2	CONN1 CONN3
+CONNECTOR_5	unknown	/	unknown	SIP5N	1	CONN6
+CONNECTOR_6	unknown	/	unknown	SIP6N	1	CONN4
+DIODE	BAT54 /,C or S	/	Return diode if U2 implemented	SOT23	1	D3
+DIODE	BAT54 /,C or S	/	unknown	SOT23	1	D2
+DIODE	unknown	/	unknown	SOT23	1	D1
+MMBT3904	unknown	/	Output VBE multiplier	SOT23	1	Q9
+POLARIZED_CAPACITOR	unknown	unknown	unknown	M 7343	1	C10
+POLARIZED_CAPACITOR	unknown	unknown	unknown	M7343	2	C6 C8
+RESISTOR	0	20%	Config B	0805	4	R21 R22 R23 R24
+RESISTOR	12.7K	2%	R/2 polarisation current	1006	1	R10
+RESISTOR	12.7K	2%	R/2 polarisation current	1206	1	R9
+RESISTOR	150	0.5%	Pol. cur. m. d. slightly higher in config A	1206	2	R29 R30
+RESISTOR	150	0.5%	Polarisation current mirror degen	1206	4	R31 R32 R33 R34
+RESISTOR	150	0.5%	unknown	0805	8	R45 R46 R47 R48 R49 R50 R51 R52
+RESISTOR	2200	unknown	Output VBE multiplier	1206	2	R71 R72
+RESISTOR	47	unknown	unknown	1206	8	R1 R2 R3 R4 R5 R6 R7 R8
+RESISTOR	470K	10%	Avoid input stage floating too much	1206	2	R19 R20
+RESISTOR	999meg	5%	Adjusts the current mirror	1206	8	R53 R54 R55 R56 R57 R58 R59 R60
+RESISTOR	unknown	/	D1 polarisation	1206	2	R11 R12
+RESISTOR	unknown	/	Q7 emitor for single stage & R73 R74 connection	1206	1	R75
+RESISTOR	unknown	/	Q8 emitor for single stage & R73 R74 connection	1206	1	R76
+RESISTOR	unknown	10%	Config A Raduces Q2 dissipation	0805	1	R26
+RESISTOR	unknown	10%	Config A Reduces Q2 dissipation	0805	1	R28
+RESISTOR	unknown	10%	Reduces Q1 dissipation	0805	2	R25 R27
+RESISTOR	unknown	10%	Reduces Q5 dissipation	1206	1	R13
+RESISTOR	unknown	10%	Reduces Q6 dissipation	1206	1	R14
+RESISTOR	unknown	10%	Reduces the Q1 dissipation	1206	2	R65 R67
+RESISTOR	unknown	10%	Reduces the Q2 dissipation	1206	2	R66 R68
+RESISTOR	unknown	2%	Input impedance	1206	2	R15 R16
+RESISTOR	unknown	unknown	(Current) negative feedback high	2512	1	R73
+RESISTOR	unknown	unknown	Input current offset compensation	unknown	1	R70
+RESISTOR	unknown	unknown	Input stage offset comp circuit	1206	3	R80 R81 R82
+RESISTOR	unknown	unknown	Minimum load guarantee	1206	1	R78
+RESISTOR	unknown	unknown	Output impedance	2512	1	R74
+RESISTOR	unknown	unknown	Q7 Q8 emitor for external darlington	1206	1	R77
+RESISTOR	unknown	unknown	unknown	1206	9	R17 R18 R41 R42 R61 R62 R63 R64 R79
+unknown	unknown	/	unknown	SOIC14	1	Q1
+unknown	unknown	/	unknown	unknown	5	Q2 Q3 Q4 Q5 Q6
+.END

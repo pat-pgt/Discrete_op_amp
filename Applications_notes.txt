@@ -1,0 +1,50 @@
+This document details 3 implementations: the electric guitar/bass pre-amplifier, the very high voltage probe and the input stage of a loudspeaker amplifier.
+
+An additional input stage using field effect transistors could have been added, but it is not the topic here.
+
+
+Electric guitar/bass pre-amplifier
+----------------------------------
+
+The goal is to supplied with a single 9V battery.
+The voltage gain is maximum 2.
+The input impedance should be at least 200K, but it is better to have 1meg.
+The output impedance is slightly high at 600 or 1000 Ohms.
+For many home equipments, an attenuator is required.
+The first frequency is 30.868Hertz for the B0 note of the 5 and 6 strings basses.
+
+D2 and D3 are omitted.
+The output voltage limiter is omitted.
+An additional daughter board has to be designed.
+* It contains an active virtual ground. Two connector should be at the same location than the U1 and U2 regulators footprints, that are omitted.
+* It contains 2 red LED (inside the virtual ground circuit for consumption reasons).
+* It contains the attenuator to provide 2 outputs, one at +4dB for the professional equipments and one at -15dB for the home equipment.
+* It contains input and output DC component removal capacitors.
+* Some resistors should be adapted to the +-4.5V
+
+
+
+Very high voltage probe
+-----------------------
+It is supplied by the power coming from the oscilloscope or an external supply. The wires should be as thin as possible.
+The voltage gain is 5.
+The input impedance is 2K for 20KV probes that contains a 100meg resistor.
+The output impedance is 50 Ohms.
+It should pass the DC component but the offset is not that critics.
+
+The voltage regulators U1 and U2 are +-12V. Since there is a need of thin wires, they guarantee the correct voltage.
+The voltage limiter is implemented as there are no output power transistors and the current in Q7 and Q8 should be limited to less than about 50mA.
+The offset compensation is omitted as the offset current on a 2K resistor is low and there are still some oscilloscopes that does not display where the 0 is.
+
+
+
+Loudspeaker amplifier
+---------------------
+
+It is supplied by the main power supply. The multiple boards is common for stereo and/or 3 ways, U1 and U2 voltage regulators can be omitted if there is a regulation for all of them.
+The voltage gain is slightly low as most modern delta sigma DAC converters for audio purpose issue 1 or 2 volts.
+The input impedance can be low as most modern delta sigma DAC converters for audio purpose have 100 Ohms or less output impedance.
+The output impedance (this project with the output stages) should be as low as possible in order to "hold" the loudspeaker.
+The DC component is optional.
+
+TODO

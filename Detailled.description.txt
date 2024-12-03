@@ -1,0 +1,92 @@
+The that300 that320 and that340 transistors
+-------------------------------------------
+The are claimed to match in gain and in Vbe.
+It is nice for many applications.
+However it is an hybrid mounting, not a 4 transistors chip.
+Experimentally, It look like the thermal model is:
+* a thermal resistor between the slot 1 (pins 1 to 3) and the slot 4 (pins 12 and 14).
+* a thermal resistor between the slot 2 (pins 5 to 7) and the slot 3 (pins 8 and 10).
+* a thermal resistor between the mid points of the 2 resistors above.
+* a higher thermal resistor between the resistor above and the outside world.
+Also, it looks like the gain of the PNP is a little bit lower than the gain of the NPN in the that340.
+
+
+
+Input stage
+-----------
+
+It is a standard input stage with 2 NPN and 2 PNP.
+The resistors R1, R2, R4 and R5 can be low values as the that3xx have a low saturation voltage.
+There are 2 options to connect the collectors of the input transistors: configuration A to the opposite power supply or configuration B to the emitter of the opposite output transistor (of this input stage). The configuration A increases the gain by 2 but the offset by 2 as well. The configuration selected by implementing or not resistors.
+One that340 could have been used for the input Q1 and Q2. The problem is a thermal runaway. If the temperature of a NPN raise, the temperature of the other NPN raise as well, more than the 2 PNPs. That deviates the polarisation point. Some high resistors could have stabilize (by the same way there are 1/10's ohms in the emitters of the last output stage), but it can runaway up or down. To fix this problem there is a need to use 2 that340, one for up and one for the down. However, the other transistors can be used for the negative feedback (see below).
+
+
+
+Input current offset compensation
+---------------------------------
+
+The offset model is: an input current offset, a transfer voltage offset and an output current offset.
+The input offset is very low, but it is enough to cause problems with high input impedance or very low output offset requirements.
+There are 2 effects that contribute to the current offset. Q1 NPN consume less current than Q2 PNP. Q1 PNP needs more base current than Q2 NPN.
+This is a little bit weired but it is not easy to regulate very low currents 
+For polarisation currents around 1mA or less, the offset is around 10uA. A 8 to 10V VBE multiplier based is followed by a very high resistor.
+
+
+
+Main gain
+---------
+
+TODO
+
+
+
+Output voltage limiter
+----------------------
+
+This has to be implemented only to limit the high output currents without external output transistors stage.
+To avoid non linearity of the zeners, they are implemented as a maximum voltage regulators in which 2 diodes are conductive in case of an over-voltage and fully blocked in normal operations.
+
+
+
+Compensation and not that relevant resistors
+--------------------------------------------
+
+For some reasons, the current negative feedback is always more stable (at the price of a higher offset, because there is one less transistor in the loop).
+To keep a phase margin, the network before the output stage is a set of 3 items in parallel:
+* a very small capacitor for the high frequencies.
+* a set of a capacitor and a resistor in series. With a wet little finger, the resistor should be the one that gives the required gain at the frequency that cause problem.
+* a resistor (R61 and R62). This resistor is intended to maintain a maximum output impedance low. However, it does not significantly change anything as if it is higher, the linearity and the offset are poorest but with a higher gain the negative feedback compensates more. The advantage of a non infinite value is to allow the offset compensation adjustment before closing the feedback loop. The value used is 5 times the load impedance seeing from the base side of the output transistors.
+There are also R19 and R20 in the input stage that should not be infinite for the same reason. 470K has been used but perhaps 860K is better.
+
+
+
+Output stage and supplies
+-------------------------
+
+There are some connector to strap and build as stand alone or to use with external power transistors.
+The PCB allows 2 options:
+* the (2) emitter's resistors are a very low value, the feedback resistor is connected to the mid point and a resistor is connected between the output and this mid point to set the output impedance.
+* the (2) emitter's resistors are twice the required output impedance, 2 other resistors are connected to the emitters and the feedback is taken from the mid point.
+
+TODO
+
+
+
+Negative current feedback
+-------------------------
+
+The negative feedback is a voltage divider with its output connected to the midpoint of the resistors of the emitters of the (output side of) input stage.
+Since the half of the transistors set Q1 and Q2 are unused (see above), a second input stage has been copied and pasted. It amplifies the ground. By this way, it has the same offset than the input stage. Then the ground of the voltage divider is connected to the mid point of this second input stage.
+Also, this stage is nice to improve the null offset adjustment as its input can be easily controlled.
+
+
+
+Next project: a differential oscilloscope probe
+-----------------------------------------------
+
+This schematic diagram can be updated to build a full differential probe.
+This time a fet input should be added as it is not nice to send current (input current offset) in the probes.
+The main gain is duplicated for the second branch.
+There is one resistor between the 2 "minus inputs" and each branch has its own resistor between the output and the "minus input".
+Due to the high input impedance of the final differentiators, the output stage is a that340 for the 2 branches. The emitter's resistors are not that low value. They have mid point to get outputs with a DC shift positive or negative.
+The final differentiators is 4 set of differential transistors set in which their collectors are connected to each other and the bases are connected to a shift on one branch and the opposite shift one the other branch. One example is [+100mV,-100mV],[-100mV,+100mV],[+300mV,-300mV],[-300mV,+300mV] By this way, the (differential) gain is flat for large signals without negative feedback.
