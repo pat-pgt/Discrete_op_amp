@@ -6,7 +6,7 @@ There is a stage by stage description file and an applications file.
 
 
 
-One extreme is the amplifier with a gain close to the infinite. Its close loop make it a theoretically very good amplifier. However, some stability drawbacks may occur.
+One extreme is the amplifier with a gain as high as possible. Its closed loop make it a theoretically very good amplifier. However, some stability drawbacks may occur.
 
 The other extreme is the amplifier with the high tech linearity technology and the relevant gain.
 
