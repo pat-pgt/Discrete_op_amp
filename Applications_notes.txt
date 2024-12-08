@@ -14,27 +14,32 @@ For many home equipments, an attenuator is required.
 The first frequency is 30.868Hertz for the B0 note of the 5 and 6 strings basses.
 
 D2 and D3 are omitted.
-The output voltage limiter is omitted.
+The voltage offset compensation is omitted (too low and no DC).
+The input current offset has be be implemented.
+The impedance from the bases of the output stage is at least 72K (600Ohms input and output, which is not very common). R61 and R62 can be about 100K.
 An additional daughter board has to be designed.
 * It contains an active virtual ground. Two connector should be at the same location than the U1 and U2 regulators footprints, that are omitted.
 * It contains 2 red LED (inside the virtual ground circuit for consumption reasons).
 * It contains the attenuator to provide 2 outputs, one at +4dB for the professional equipments and one at -15dB for the home equipment.
 * It contains input and output DC component removal capacitors.
 * Some resistors should be adapted to the +-4.5V
-
+There is no risk to burn the output stage, due to the output resistors.
 
 
 Very high voltage probe
 -----------------------
 It is supplied by the power coming from the oscilloscope or an external supply. The wires should be as thin as possible.
-The voltage gain is 5.
+The voltage gain is 10.
 The input impedance is 2K for 20KV probes that contains a 100meg resistor.
+The maximum input voltage is guarantee because one does not try by accident to measure higher voltages.
 The output impedance is 50 Ohms.
 It should pass the DC component but the offset is not that critics.
 
 The voltage regulators U1 and U2 are +-12V. Since there is a need of thin wires, they guarantee the correct voltage.
-The voltage limiter is implemented as there are no output power transistors and the current in Q7 and Q8 should be limited to less than about 50mA.
-The offset compensation is omitted as the offset current on a 2K resistor is low and there are still some oscilloscopes that does not display where the 0 is.
+The maximum output voltage is 4V without load.
+The voltage on the oscilloscope, with a 50Ohms load, is 2V. One has to declare a x10 probe and read the volts as kilo-volts. 
+That limits the current in the output power transistors Q7 and Q8 to 40mA in normal use and 80mA in short circuit.
+The input current offset compensation is omitted as the offset current on a 2K resistor is low and there are still some oscilloscopes that does not display where the 0 is. The voltage offset may is useful.
 
 
 
@@ -47,4 +52,7 @@ The input impedance can be low as most modern delta sigma DAC converters for aud
 The output impedance (this project with the output stages) should be as low as possible in order to "hold" the loudspeaker.
 The DC component is optional.
 
+
 TODO
+The power supply may be 12V, as modern sets have a 3 ways active filter. Individual 10-15W are enough. Due to the good linearity and slew rate performances, there is no need to oversize. For 5+1 surround systems, the power is even higher.
+For all the amplifiers that use a dual power supply, if an output capacitor is required (offset too bad), its voltage should be the value of the supply, for multiple reasons. In the case of this board, if the offset i_s not properly adjusted, a low voltage capacitor can be used. Some diodes protect it. The set does not take a large place.

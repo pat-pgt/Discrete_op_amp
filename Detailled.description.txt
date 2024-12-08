@@ -40,14 +40,6 @@ TODO
 
 
 
-Output voltage limiter
-----------------------
-
-This has to be implemented only to limit the high output currents without external output transistors stage.
-To avoid non linearity of the zeners, they are implemented as a maximum voltage regulators in which 2 diodes are conductive in case of an over-voltage and fully blocked in normal operations.
-
-
-
 Compensation and not that relevant resistors
 --------------------------------------------
 
@@ -57,6 +49,8 @@ To keep a phase margin, the network before the output stage is a set of 3 items 
 * a set of a capacitor and a resistor in series. With a wet little finger, the resistor should be the one that gives the required gain at the frequency that cause problem.
 * a resistor (R61 and R62). This resistor is intended to maintain a maximum output impedance low. However, it does not significantly change anything as if it is higher, the linearity and the offset are poorest but with a higher gain the negative feedback compensates more. The advantage of a non infinite value is to allow the offset compensation adjustment before closing the feedback loop. The value used is 5 times the load impedance seeing from the base side of the output transistors.
 There are also R19 and R20 in the input stage that should not be infinite for the same reason. 470K has been used but perhaps 860K is better.
+The main gain current mirrors uses degenerescence resistors. They can be adjusted while replacing the 999meg resistors in parallel by relevant values. Since the transistors are matched, the adjustment should not shift more than a couple of percents.
+The diodes D1 (slots 1 and 2) produce stabilized low voltage for a fine adjustment of the offset. By adjusting R41 and R42, a relevant voltage is generated.
 
 
 
@@ -68,6 +62,14 @@ The PCB allows 2 options:
 * the (2) emitter's resistors are a very low value, the feedback resistor is connected to the mid point and a resistor is connected between the output and this mid point to set the output impedance.
 * the (2) emitter's resistors are twice the required output impedance, 2 other resistors are connected to the emitters and the feedback is taken from the mid point.
 
+TODO
+
+
+
+Effect of the temperature
+-------------------------
+
+All the current mirrors are insensitive, as long as they are used as a current mirror without gain (with same degenerescence resistors).
 TODO
 
 
